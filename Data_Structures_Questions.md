@@ -14,9 +14,10 @@ O(1)
 ## Queue
 
 1. What is the runtime complexity of `enqueue`?
+O(n)
 
 2. What is the runtime complexity of `dequeue`?  
-O(n^2)
+O(n)
 
 3. What is the runtime complexity of `len`?  
 O(1)

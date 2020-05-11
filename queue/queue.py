@@ -59,45 +59,30 @@ class Queue:
     def __len__(self):
         return self.size
 
-    def enqueue(self, value):
-        # regardless of if the list is empty or not, we need to wrap the value in a Node 
-        new_node = Node(value)
-        # what if the list is empty? 
-        if not self.head:
-            self.size += 1
-            self.head = new_node
-        # what if the list isn't empty?
+    def enqueue(self,data):
+        new_item = Node(data)
+        current = self.head
+        self.size += 1
+        if current is None:
+            self.head = new_item
         else:
-            # what node do we want to add the new node to? 
-            # the last node in the list 
-            # we can get to the last node in the list by traversing it
-            self.size += 1 
-            current = self.head 
-            while current.get_next() is not None:
+            while current.get_next():
                 current = current.get_next()
-            # we're at the end of the linked list 
-            current.set_next(new_node)
+            current.set_next(new_item)
 
     def dequeue(self):
-        # If linked list is empty
         if self.head == None:
             return None
 
-        # If linked list is not empty
         current = self.head
-
-        previous_node = None
-
-        while current.get_next():
-            previous_node = current
-            current = current.get_next()
-
-        if previous_node:
-            previous_node.next_node = None
-
+        if current != None:
+            self.head = current.get_next()
         else:
-            self.head = None
-        
+            return None
+
         self.size -= 1
         value = current.get_value()
         return value
+
+""" The difference between using an array and a linked list for a queue is fairly similar to the 
+stack."""
