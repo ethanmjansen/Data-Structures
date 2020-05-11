@@ -100,13 +100,5 @@ class Stack:
         return value
                 
 
-            
-
-                
-
-
-        
-            
-
-
-            
+""" The difference between the two is that an array can use python functions and a 
+linked list has to be implemented as a class."""
