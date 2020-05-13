@@ -1,38 +1,43 @@
 class Node:
     
-    def __init__(self, value=None, next_node=None):
+    def __init__(self, value=None, next=None):
         self.value = value
-        self.next_node = next_node
+        self.next = next
     
     def get_value(self):
         return self.value
     
     def get_next(self):
-        return self.next_node
+        return self.next
     
     def set_next(self,new_node):
-        self.next_node = new_node
+        self.next = new_node
 
 class LinkedList():
 
     def __init__(self):
         self.head = None
+        self.tail = None
         
-    def insert_head(self, value):
+    def add_to_head(self, value):
         new_node = Node(value)
-        new_node.set_next(self.head)
-        self.head = new_node
+
+        if not self.head and not self.tail:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
 
     def add_to_tail(self, value):
         new_node = Node(value)
-        current = self.head
-        if current is None:
+
+        if not self.head and not self.tail:
             self.head = new_node
+            self.tail = new_node
         else:
-            while current.get_next():
-                current = current.get_next()
-            current.set_next(new_node)
-        self.tail = new_node
+            self.tail.next = new_node
+            self.tail = new_node
 
     def contains(self, value):
         current = self.head
@@ -43,52 +48,16 @@ class LinkedList():
                 current = current.get_next()
         return False
 
-    def delete(self, value):
-        current = self.head
-        prev = None
-        while current:
-            if current.get_value() == value:
-                if prev:
-                    prev.set_next(current.get_next())
-                else:
-                    self.head = current.get_next()
-                break
-            else:
-                prev = current
-                current = current.get_next()
-
     def remove_head(self):
         current = self.head
 
-        if not self.head:
+        if not self.head and not self.tail:
             return None
         else: 
-            value = self.head.get_value()
-            self.head = self.head.get_next()
-            while current.get_next():
-                current = current.get_next()
-            self.tail = current.get_next()
+            value = self.head.value
+            self.head = self.head.next
+            self.tail = current.next
             return value
-
-    def remove_tail(self):
-        current = self.head
-        previous_node = None
-        
-        if self.head == None:
-            return None
-
-        while current.get_next():
-            previous_node = current
-            current = current.get_next()
-
-        if previous_node:
-            previous_node.next_node = None
-        else:
-            self.head = None
-
-        value = current.get_value()
-        return value
-
 
     def get_max(self):
         current = self.head      
@@ -112,15 +81,3 @@ class LinkedList():
             current = current.get_next()
         print(self.temp) 
 
-if __name__ == '__main__':
-    linked_list = LinkedList()
-    linked_list.add_to_tail(10)
-    linked_list.add_to_tail(9)
-    linked_list.add_to_tail(40)
-    linked_list.add_to_tail(59)
-    linked_list.print_list()
-    linked_list.remove_head()
-    linked_list.print_list()
-    linked_list.remove_tail()
-    linked_list.print_list()
-    linked_list.get_max()
