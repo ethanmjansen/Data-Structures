@@ -72,12 +72,3 @@ class LinkedList():
                 current = current.get_next()
 
         return max
-
-    def print_list(self):
-        current = self.head
-        self.temp = []
-        while current:
-            self.temp.append(current.get_value())
-            current = current.get_next()
-        print(self.temp) 
-
