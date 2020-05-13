@@ -13,6 +13,9 @@ return elements in First In First Out order.
 Stretch: What if you could only use instances of your Stack class to implement the Queue?
          What would that look like? How many Stacks would you need? Try it!
 """
+
+from singly_linked_list import LinkedList
+
 class Array_Queue:
     def __init__(self):
         self.size = 0
@@ -33,56 +36,24 @@ class Array_Queue:
             self.size -= 1
             return value
 
-class Node:
-    def __init__(self, value=None, next_node=None):
-        # the value at this linked list node
-        self.value = value
-        # reference to the next node in the list
-        self.next_node = next_node
-
-    def get_value(self):
-        return self.value
-
-    def get_next(self):
-        return self.next_node
-
-    def set_next(self, new_next):
-        # set this node's next_node reference to the passed in node
-        self.next_node = new_next
-
 class Queue:
     def __init__(self):
-        # first node in the list 
-        self.head = None
         self.size = 0
-
+        self.storage = LinkedList()
+    
     def __len__(self):
         return self.size
 
-    def enqueue(self,data):
-        new_item = Node(data)
-        current = self.head
+    def enqueue(self, value):
         self.size += 1
-        if current is None:
-            self.head = new_item
-        else:
-            while current.get_next():
-                current = current.get_next()
-            current.set_next(new_item)
+        self.storage.add_to_tail(value)
 
     def dequeue(self):
-        if self.head == None:
-            return None
-
-        current = self.head
-        if current != None:
-            self.head = current.get_next()
+        if not self.storage.head:
+            self.size == 0
         else:
-            return None
-
-        self.size -= 1
-        value = current.get_value()
-        return value
+            self.size -= 1
+            return self.storage.remove_head()
 
 """ The difference between using an array and a linked list for a queue is fairly similar to the 
 stack."""
