@@ -9,6 +9,10 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+
+from queue import Queue
+from stack import Stack
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -62,23 +66,54 @@ class BSTNode:
         if self.left is not None:
             self.left.for_each(fn)
 
-    '''# Part 2 -----------------------
+    # Part 2 -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        if node.left:
+            self.in_order_print(node.left)
+        print(node.value)
+        if node.right:
+            self.in_order_print(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        queue = Queue()
+
+        # add the root node
+        queue.enqueue(node)
+        # loop so long as the queue still has elements
+        while len(queue) > 0:
+            current = queue.dequeue()
+            
+            if current.right:
+                queue.enqueue(current.right)
+            if current.left:
+                queue.enqueue(current.left)
+
+            print(current.value)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        stack = Stack()
 
+        # add the root node
+        stack.push(node)
+
+        # loop so long as the stack still has elements 
+        while len(stack) > 0:
+            current = stack.pop()
+            
+            if current.right:
+                stack.push(current.right)
+            if current.left:
+                stack.push(current.left)
+
+            print(current.value)
+           
     # Stretch Goals -------------------------
     # Note: Research may be required
 
@@ -88,4 +123,4 @@ class BSTNode:
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
-        pass'''
+        pass
