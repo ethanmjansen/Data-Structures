@@ -2,27 +2,36 @@ Answer the following questions for each of the data structures you implemented a
 
 ## Stack
 
-1. What is the runtime complexity of `push`?
+1. What is the runtime complexity of `push`?  
+O(1)
 
-2. What is the runtime complexity of `pop`?
+2. What is the runtime complexity of `pop`?  
+O(1)
 
-3. What is the runtime complexity of `len`?
+3. What is the runtime complexity of `len`?  
+O(1)
 
 ## Queue
 
-1. What is the runtime complexity of `enqueue`?
+1. What is the runtime complexity of `enqueue`?  
+O(1)
 
-2. What is the runtime complexity of `dequeue`?
+2. What is the runtime complexity of `dequeue`?  
+O(1)
 
-3. What is the runtime complexity of `len`?
+3. What is the runtime complexity of `len`?  
+O(1)
 
 ## Binary Search Tree
 
-1. What is the runtime complexity of `insert`? 
+1. What is the runtime complexity of `insert`?  
+O(logn)
 
-2. What is the runtime complexity of `contains`?
+2. What is the runtime complexity of `contains`?  
+O(logn)
 
-3. What is the runtime complexity of `get_max`? 
+3. What is the runtime complexity of `get_max`?   
+O(logn)
 
 ## Heap
 
